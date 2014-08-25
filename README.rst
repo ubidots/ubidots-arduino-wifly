@@ -1,19 +1,17 @@
 Ubidots-Arduino-WiFly
 =====================
 
-Ubidots-Arduino-WiFly is an example with the WiFly shield RN171 to post a value on Ubidots witha a basic function "save_value"
+Ubidots-Arduino-WiFly provides an example of sending data to Ubidots from the WiFly shiel, which used the RN171 chip from Microchip Technologies.
 
-You will need:
+What you'll need:
 --------------
 * Arduino uno
 * WiFly shield RN171
-* WiFly library
-
-
+* This WiFly library
 
 A Quick example
 ----------------
-Here's a quick example of how to post a value on Ubidots, with the serial terminal of Arduino:
+Here's a quick example of how to post an analogue value to Ubidots.
 
 
 .. code-block:: cpp
@@ -21,34 +19,35 @@ Here's a quick example of how to post a value on Ubidots, with the serial termin
        /*
        Basic sketch for WiFly shield RN171
  
-       This is a basic example to post a value on Ubidots with a simple
-       Function "save_value".
+       This is a basic example to post a value to Ubidots using the function "save_value".
        
-       You need:
-       * Arduino 1
-       * WiFly Shield RN171
-       * WiFly library
-       
+       You'll need:
+       * An Arduino Uno
+       * A WiFly Shield RN171
+
        Pins' connection
        Arduino       WiFly
         2    <---->    TX
         3    <---->    RX
        
-       created 20 Aug. 2014
+       Created 20 Aug. 2014
        by Mateo Velez - Metavix
        
        This example code is in the public domain.
        
        */
       //-------------------------------------------------------------
-      //------------------------------Librarys-----------------------
+      //------------------------------Libraries-----------------------
       //-------------------------------------------------------------
+      
       #include <Arduino.h>
       #include <SoftwareSerial.h>
       #include <WiFly.h>
+      
       //-------------------------------------------------------------
       //---------------------Network Configuration-------------------
       //-------------------------------------------------------------
+      
       /* Change the AUTH according to your network settings
          If is open change to WIFLY_AUTH_OPEN
          If is WPA1 change to WIFLY_AUTH_WPA1
@@ -78,7 +77,6 @@ Here's a quick example of how to post a value on Ubidots, with the serial termin
           wifly.save();    
         }
       }
-
 
 
       void loop() {
@@ -131,18 +129,18 @@ Here's a quick example of how to post a value on Ubidots, with the serial termin
       }
 
 
-Function
+Function reference:
 
 save_value()
 ````````````````````
 .. code-block:: cpp
 
-    boolean = ubiclient.save_value(valor)
+    boolean = ubiclient.save_value(value)
 =======  ============  ===================================
 Type     Argument      Description
 =======  ============  ===================================
-int      valor         The value of your variable
+int      value         The value you wish to send to Ubidots
 =======  ============  ====================================
 
-Save a value to Ubidots. Returns true upon success. Returns false upon error.
+Saves a value to Ubidots. Returns true upon success. Returns false upon error.
  
