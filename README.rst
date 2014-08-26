@@ -1,7 +1,7 @@
 Ubidots-Arduino-WiFly
 =====================
 
-Ubidots-Arduino-WiFly provides an example of sending data to Ubidots from the WiFly shiel, which used the RN171 chip from Microchip Technologies.
+Ubidots-Arduino-WiFly provides an example of sending data to Ubidots from the WiFly shield, which uses the RN171 chip from Microchip Technologies.
 
 What you'll need:
 --------------
