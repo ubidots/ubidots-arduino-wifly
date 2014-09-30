@@ -3,11 +3,24 @@ Ubidots-Arduino-WiFly
 
 Ubidots-Arduino-WiFly provides an example of sending data to Ubidots from the WiFly shield, which uses the RN171 chip from Microchip Technologies.
 
-What you'll need:
---------------
-* Arduino uno
-* WiFly shield RN171
-* This WiFly library
+Components
+----------
+
+* `Arduino uno <http://arduino.cc/en/Main/arduinoBoardUno>`_:
+
+.. figure:: https://github.com/ubidots/ubidots-arduino/tree/master/Pictures/arduino-uno.png
+    :name: arduino-uno
+    :align: center
+    :alt: arduino-uno
+
+* `WiFly shield RN171 <>`_:
+
+.. figure:: https://github.com/ubidots/ubidots-arduino/tree/master/Pictures/arduino-uno.png
+    :name: arduino-uno
+    :align: center
+    :alt: arduino-uno
+    
+* `This WiFly library <>`_:
 
 A Quick example
 ----------------
@@ -129,7 +142,8 @@ Here's a quick example of how to post an analogue value to Ubidots.
       }
 
 
-Function reference:
+Explanation of the functions
+----------------------------
 
 save_value()
 ````````````````````
