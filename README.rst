@@ -8,14 +8,14 @@ Components
 
 * `Arduino uno <http://arduino.cc/en/Main/arduinoBoardUno>`_:
 
-.. figure:: https://github.com/ubidots/ubidots-arduino/tree/master/Pictures/arduino-uno.png
+.. figure:: http://ubidots.com/docs/_images/arduino-uno.png
     :name: arduino-uno
     :align: center
     :alt: arduino-uno
 
 * `WiFly shield RN171 <>`_:
 
-.. figure:: https://github.com/ubidots/ubidots-arduino/tree/master/Pictures/arduino-uno.png
+.. figure:: http://ubidots.com/docs/_images/wifly.jpg
     :name: arduino-uno
     :align: center
     :alt: arduino-uno
