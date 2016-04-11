@@ -13,21 +13,9 @@ Ubidots-Arduino-WiFly provides an example of sending data to Ubidots from the Wi
 Components
 ----------
 
-* `Arduino uno <http://arduino.cc/en/Main/arduinoBoardUno>`_:
-
-.. figure:: http://ubidots.com/docs/_images/arduino-uno.png
-    :name: arduino-uno
-    :align: center
-    :alt: arduino-uno
-
-* `WiFly shield RN171 <>`_:
-
-.. figure:: http://ubidots.com/docs/_images/wifly.jpg
-    :name: arduino-uno
-    :align: center
-    :alt: arduino-uno
-    
-* `This WiFly library <>`_:
+* Arduino uno
+* WiFly shield RN171   
+* This WiFly library
 
 A Quick example
 ----------------
