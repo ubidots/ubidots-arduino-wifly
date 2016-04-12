@@ -145,28 +145,31 @@ bool Ubidots::sendAll() {
     all += "|";
     all += _dsTag;
     all += "=>";
-    for(i=0; i<currentValue;){
-        str = String(((val+i)->valueName),5);
+    for (i = 0; i < currentValue; ) {
+        str = String(((val + i)->valueName), 5);
         all += String((val + i)->idName);
         all += ":";
         all += str;
         if ((val + i)->ctext != NULL) {
             all += "$";
-            all += String((val+i)->ctext);
+            all += String((val + i)->ctext);
         }
         i++;
-        if(i<currentValue){
+        if(i < currentValue){
             all += ","; 
         }
     }
     all += "|end";
     Serial.println(all.c_str());
-    if (!_client.connect(SERVER, PORT)) {
-        Serial.println("Failed to connect.\r\n");
-        currentValue = 0;
-        return -2;
+    i = 0;
+    while (!_client.connected() && i < 6) {
+        i++;
+        _client.connect(SERVER, PORT);
     }
-    _client.send(all.c_str());
+    if (_client.connected()) {  // Connect to the server
+        _client.send(all.c_str());
+        currentValue = 0;
+    }    
     int c;
     while (!_client.available());
     while (_client.available()) {
