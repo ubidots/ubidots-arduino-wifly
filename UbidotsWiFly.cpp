@@ -178,6 +178,7 @@ bool Ubidots::sendAll() {
         Serial.write((char)c);
       }
     }
+    _client.stop();
     currentValue = 0;
     return true;
 }
