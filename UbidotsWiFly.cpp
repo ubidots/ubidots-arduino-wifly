@@ -23,7 +23,7 @@ Made by Mateo Velez - Metavix for Ubidots Inc
 #include "UbidotsWiFly.h"
 #include <string.h>
 #include <SoftwareSerial.h>
-#include "WiFly.h"
+#include "WiFlyClient.h"
 /**
  * Constructor.
  */
@@ -31,7 +31,6 @@ Ubidots::Ubidots(char* token) {
     _token = token;
     _dsName = "WiFly";
     _dsTag = "WiFly_TAG/1.0.0";
-    uart.begin(BAUDRATE);         // WiFly UART Baud Rate: 9600
     currentValue = 0;
     val = (Value *)malloc(MAX_VALUES*sizeof(Value));
 }
@@ -44,14 +43,11 @@ bool Ubidots::setDatasourceTag(char* dsTag) {
     return true;
 }
 bool Ubidots::wifiConnection(const char *ssid, const char *phrase, int auth) {
-    if (!_client.isAssociated(ssid)) {
-        while (!_client.join(ssid, phrase, auth)) {
-            Serial.println("Failed to join ");
-            Serial.println(F("Wait 0.1 second and try again..."));
-            delay(100);
-        }
-        _client.save();    // save configuration, 
-    }
+    while (!_client.join(ssid, phrase, auth)) {
+        Serial.println("Failed to join ");
+        Serial.println(F("Wait 0.1 second and try again..."));
+        delay(100);
+    }    
 }
 /** 
  * This function is to get value from the Ubidots API
@@ -63,12 +59,12 @@ float Ubidots::parseValue(String body){
   float num;
   char reply[15];
   uint8_t bodyPosinit;
-  uint8_t bodyPosend;
+  uint8_t bodyP.write;
   bodyPosinit = 4 + body.indexOf("\r\n\r\n");
   rawvalue = body.substring(bodyPosinit);
   bodyPosinit = 9 + rawvalue.indexOf("\"value\": ");
-  bodyPosend = rawvalue.indexOf(", \"timestamp\"");
-  rawvalue.substring(bodyPosinit,bodyPosend).toCharArray(reply, 10);
+  bodyP.write = rawvalue.indexOf(", \"timestamp\"");
+  rawvalue.substring(bodyPosinit,bodyP.write).toCharArray(reply, 10);
   num = atof(reply); 
   return num;*/
 }
@@ -90,20 +86,20 @@ float Ubidots::getValue(char* id){
   }
   Serial.println(F("Geting your variable"));
   // Make a HTTP request:
-  _client.send("GET /api/v1.6/variables/");
-  _client.send(id);
-  _client.send("/values?page_size=1 HTTP/1.1");
-  _client.send("\r\n");
-  _client.send("Host: things.ubidots.com");
-  _client.send("\r\n");
-  _client.send("User-Agent: Arduino-Ethernet/1.0"); 
-  _client.send("\r\n");
-  _client.send("X-Auth-Token: ");
-  _client.send(_token);
-  _client.send("\r\n");
-  _client.send("Connection: close");
-  _client.send("\r\n");
-  _client.send("\r\n");
+  _client.write("GET /api/v1.6/variables/");
+  _client.write(id);
+  _client.write("/values?page_size=1 HTTP/1.1");
+  _client.write("\r\n");
+  _client.write("Host: things.ubidots.com");
+  _client.write("\r\n");
+  _client.write("User-Agent: Arduino-Ethernet/1.0"); 
+  _client.write("\r\n");
+  _client.write("X-Auth-Token: ");
+  _client.write(_token);
+  _client.write("\r\n");
+  _client.write("Connection: close");
+  _client.write("\r\n");
+  _client.write("\r\n");
   
   while (!_client.available());
   while (_client.available()){
@@ -133,7 +129,7 @@ void Ubidots::add(char *variable_id, float value, char* context) {
   }
 }
 /**
- * Send all data of all variables that you saved
+ *.write all data of all variables that you saved
  * @reutrn true upon success, false upon error.
  */
 bool Ubidots::sendAll() {
@@ -167,7 +163,7 @@ bool Ubidots::sendAll() {
         _client.connect(SERVER, PORT);
     }
     if (_client.connected()) {  // Connect to the server
-        _client.send(all.c_str());
+        _client.write(all.c_str());
         currentValue = 0;
     }    
     int c;

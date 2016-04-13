@@ -25,7 +25,7 @@ Made by Mateo Velez - Metavix for Ubidots Inc
 #include <Arduino.h>
 #include <Stream.h>
 #include <SoftwareSerial.h>
-#include <WiFly.h>
+#include <WiFlyClient.h>
 
 #define WIFLY_AUTH_OPEN        0    // Open (default)  
 #define WIFLY_AUTH_WEP         1    // WEP-128
@@ -37,10 +37,7 @@ Made by Mateo Velez - Metavix for Ubidots Inc
 
 #define SERVER "translate.ubidots.com"
 #define PORT 9010
-#define TX 2
-#define RX 3
 #define MAX_VALUES 5
-#define BAUDRATE 9600
 
 
 
@@ -68,7 +65,6 @@ class Ubidots {
       uint8_t currentValue;
       Value * val;
       float parseValue(String body);
-      SoftwareSerial uart = SoftwareSerial(TX, RX);
-      WiFly _client = WiFly(uart);
+      WiFlyClient _client;
 };
 #endif
