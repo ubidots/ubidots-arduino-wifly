@@ -25,7 +25,7 @@ Made by Mateo Velez - Metavix for Ubidots Inc
 #include <Arduino.h>
 #include <Stream.h>
 #include <SoftwareSerial.h>
-#include <WiFlyClient.h>
+#include <WiFly.h>
 
 #define WIFLY_AUTH_OPEN        0    // Open (default)  
 #define WIFLY_AUTH_WEP         1    // WEP-128
@@ -34,6 +34,10 @@ Made by Mateo Velez - Metavix for Ubidots Inc
 #define WIFLY_AUTH_WPA2_PSK    4    // WPA2-PSK
 #define WIFLY_AUTH_ADHOC       6    // Ad-hoc, join any Ad-hoc network
 
+#define TX 2
+#define RX 3
+#define BAUDRATE 9600
+#define TCP_CLIENT_DEFAULT_TIMEOUT         30000  // 3s
 
 #define SERVER "translate.ubidots.com"
 #define PORT 9010
@@ -58,6 +62,7 @@ class Ubidots {
       bool setDatasourceName(char* dsName);
       bool setDatasourceTag(char* dsTag);
  private:
+      SoftwareSerial uart = SoftwareSerial(TX, RX);
       char* _token;
       char* _dsTag;
       char* _dsName;
@@ -65,6 +70,6 @@ class Ubidots {
       uint8_t currentValue;
       Value * val;
       float parseValue(String body);
-      WiFlyClient _client;
+      WiFly _client = WiFly(uart);
 };
 #endif
