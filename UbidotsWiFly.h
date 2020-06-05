@@ -39,8 +39,8 @@ Made by Mateo Velez - Metavix for Ubidots Inc
 #define BAUDRATE 9600
 #define TCP_CLIENT_DEFAULT_TIMEOUT         30000  // 3s
 
-#define SERVER "translate.ubidots.com"
-#define PORT 9010
+#define SERVER "industrial.api.ubidots.com"
+#define PORT 9012
 #define MAX_VALUES 5
 
 
